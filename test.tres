@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://byig7fugta13a"]
+
+[ext_resource type="Texture2D" uid="uid://2nw8suldolnu" path="res://assets/ui/grey_button01.png" id="1_grv3c"]
+
+[resource]
+texture = ExtResource("1_grv3c")
+texture_margin_left = 5.0
+texture_margin_top = 4.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+region_rect = Rect2(0, 0, 190, 49)

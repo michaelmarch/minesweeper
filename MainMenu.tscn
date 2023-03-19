@@ -1,0 +1,231 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch5nkbe0hn8m4"]
+
+[ext_resource type="Theme" uid="uid://cxkiulyl3viy1" path="res://new_theme.tres" id="1_qs77i"]
+[ext_resource type="Texture2D" uid="uid://c1bwg1nlubudn" path="res://assets/ui/grey_crossWhite.png" id="2_1lobc"]
+[ext_resource type="Script" path="res://ScreenSplit.gd" id="2_eojud"]
+[ext_resource type="Script" path="res://CreditsHandler.gd" id="4_lqp4f"]
+[ext_resource type="ButtonGroup" uid="uid://dq1f8fefuyhs4" path="res://screen_control_buttons.tres" id="4_v313f"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_xidub"]
+
+[node name="MainMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qs77i")
+
+[node name="ScreenSplit" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("2_eojud")
+
+[node name="CenterContainer" type="CenterContainer" parent="ScreenSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenSplit/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_type_variation = &"ExitButton"
+icon = ExtResource("2_1lobc")
+icon_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer"]
+y_sort_enabled = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"WindowPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Options" type="VBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WidthSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/WidthSetting"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Width"
+
+[node name="SpinBox" type="SpinBox" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/WidthSetting"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_icons/updown = SubResource("ImageTexture_xidub")
+alignment = 1
+
+[node name="HeightSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/HeightSetting"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Height"
+
+[node name="SpinBox" type="SpinBox" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/HeightSetting"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_icons/updown = SubResource("ImageTexture_xidub")
+alignment = 1
+
+[node name="MinesSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/MinesSetting"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Mines"
+
+[node name="SpinBox" type="SpinBox" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/MinesSetting"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_icons/updown = SubResource("ImageTexture_xidub")
+alignment = 1
+
+[node name="ModeSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/ModeSetting"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Tournament Mode"
+
+[node name="CheckBox" type="CheckBox" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/ModeSetting"]
+layout_mode = 2
+size_flags_horizontal = 10
+button_pressed = true
+
+[node name="Buttons" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="DiscardButton" type="Button" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/Buttons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"ExitButton2"
+icon = ExtResource("2_1lobc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AcceptButton" type="Button" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/Buttons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_type_variation = &"AcceptButton"
+text = "Accept"
+
+[node name="Credits" type="VBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.368627, 0.368627, 0.368627, 1)
+bbcode_enabled = true
+text = "[center]Assets:[/center]
+
+[table=2]
+[cell]Kenney:[/cell] [cell][url=https://www.kenney.nl/][color=#1ea7e1]https://www.kenney.nl[/color][/url][/cell]
+[/table]
+"
+fit_content = true
+meta_underlined = false
+script = ExtResource("4_lqp4f")
+
+[node name="Main" type="CenterContainer" parent="ScreenSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSplit/Main"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="TitlePanel" type="PanelContainer" parent="ScreenSplit/Main/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_type_variation = &"TitlePanel"
+
+[node name="Label" type="Label" parent="ScreenSplit/Main/VBoxContainer/TitlePanel"]
+layout_mode = 2
+theme_type_variation = &"Title"
+text = "MineSweeper"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="ScreenSplit/Main/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"WindowPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_type_variation = &"MainButton"
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+button_group = ExtResource("4_v313f")
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_type_variation = &"SecondaryButton"
+toggle_mode = true
+button_group = ExtResource("4_v313f")
+text = "Credits"
+
+[connection signal="pressed" from="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="ScreenSplit" method="_on_exit_button_pressed"]
+[connection signal="meta_clicked" from="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits/RichTextLabel" to="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits/RichTextLabel" method="_on_meta_clicked"]
+[connection signal="toggled" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/OptionsButton" to="ScreenSplit" method="_on_options_button_toggled"]
+[connection signal="toggled" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/CreditsButton" to="ScreenSplit" method="_on_credits_button_toggled"]
