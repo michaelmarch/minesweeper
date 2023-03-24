@@ -1,27 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch5nkbe0hn8m4"]
+[gd_scene load_steps=8 format=3 uid="uid://b8e7ut1tw7oxa"]
 
-[ext_resource type="Theme" uid="uid://cxkiulyl3viy1" path="res://new_theme.tres" id="1_qs77i"]
+[ext_resource type="Theme" uid="uid://cxkiulyl3viy1" path="res://main_theme.tres" id="1_qs77i"]
 [ext_resource type="Texture2D" uid="uid://c1bwg1nlubudn" path="res://assets/ui/grey_crossWhite.png" id="2_1lobc"]
-[ext_resource type="Script" path="res://ScreenSplit.gd" id="2_eojud"]
-[ext_resource type="Script" path="res://CreditsHandler.gd" id="4_lqp4f"]
-[ext_resource type="ButtonGroup" uid="uid://dq1f8fefuyhs4" path="res://screen_control_buttons.tres" id="4_v313f"]
+[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_hgn81"]
+[ext_resource type="Script" path="res://scenes/main_menu/split_screen.gd" id="2_rgyul"]
+[ext_resource type="ButtonGroup" uid="uid://dq1f8fefuyhs4" path="res://scenes/main_menu/screen_control_buttons.tres" id="4_v313f"]
+[ext_resource type="Script" path="res://credits_handler.gd" id="5_pat12"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_xidub"]
 
-[node name="MainMenu" type="PanelContainer"]
+[node name="MainMenu" type="PanelContainer" node_paths=PackedStringArray("width_spin_box", "height_spin_box", "mine_count_spin_box")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qs77i")
+script = ExtResource("2_hgn81")
+width_spin_box = NodePath("ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/WidthSetting/SpinBox")
+height_spin_box = NodePath("ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/HeightSetting/SpinBox")
+mine_count_spin_box = NodePath("ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/MinesSetting/SpinBox")
 
-[node name="ScreenSplit" type="HBoxContainer" parent="."]
+[node name="ScreenSplit" type="HBoxContainer" parent="." node_paths=PackedStringArray("options", "credits", "options_button", "credits_button")]
 layout_mode = 2
 theme_override_constants/separation = 0
-script = ExtResource("2_eojud")
+script = ExtResource("2_rgyul")
+options = NodePath("CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options")
+credits = NodePath("CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits")
+options_button = NodePath("Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/OptionsButton")
+credits_button = NodePath("Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/CreditsButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="ScreenSplit"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -65,7 +75,6 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="Options" type="VBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
@@ -82,7 +91,12 @@ text = "Width"
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_icons/updown = SubResource("ImageTexture_xidub")
+min_value = 8.0
+max_value = 20.0
+value = 8.0
 alignment = 1
+update_on_text_changed = true
+select_all_on_focus = true
 
 [node name="HeightSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
@@ -97,7 +111,12 @@ text = "Height"
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_icons/updown = SubResource("ImageTexture_xidub")
+min_value = 8.0
+max_value = 20.0
+value = 8.0
 alignment = 1
+update_on_text_changed = true
+select_all_on_focus = true
 
 [node name="MinesSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
@@ -112,7 +131,10 @@ text = "Mines"
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_icons/updown = SubResource("ImageTexture_xidub")
+value = 12.0
 alignment = 1
+update_on_text_changed = true
+select_all_on_focus = true
 
 [node name="ModeSetting" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
 layout_mode = 2
@@ -126,46 +148,29 @@ text = "Tournament Mode"
 [node name="CheckBox" type="CheckBox" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/ModeSetting"]
 layout_mode = 2
 size_flags_horizontal = 10
-button_pressed = true
-
-[node name="Buttons" type="HBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="DiscardButton" type="Button" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/Buttons"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_type_variation = &"ExitButton2"
-icon = ExtResource("2_1lobc")
-icon_alignment = 1
-expand_icon = true
-
-[node name="AcceptButton" type="Button" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/Buttons"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_type_variation = &"AcceptButton"
-text = "Accept"
 
 [node name="Credits" type="VBoxContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(236, 0)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits"]
-custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.368627, 0.368627, 0.368627, 1)
 bbcode_enabled = true
-text = "[center]Assets:[/center]
+text = "[center]UI Assets:[/center]
 
-[table=2]
-[cell]Kenney:[/cell] [cell][url=https://www.kenney.nl/][color=#1ea7e1]https://www.kenney.nl[/color][/url][/cell]
-[/table]
-"
+[url=https://www.kenney.nl/][color=#1ea7e1][center]Kenney[/center][/color][/url]
+
+
+[center]Game Idea:[/center]
+
+[url=https://en.wikipedia.org/wiki/Microsoft_Minesweeper][color=#1ea7e1][center]Robert Donner[/center]
+[center]&[/center]
+[center]Curt Johnson[/center][/color][/url]"
 fit_content = true
 meta_underlined = false
-script = ExtResource("4_lqp4f")
+script = ExtResource("5_pat12")
 
 [node name="Main" type="CenterContainer" parent="ScreenSplit"]
 layout_mode = 2
@@ -225,7 +230,15 @@ toggle_mode = true
 button_group = ExtResource("4_v313f")
 text = "Credits"
 
+[node name="QuitButton" type="Button" parent="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"ExitButton2"
+text = "Quit Game"
+
 [connection signal="pressed" from="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/HBoxContainer/ExitButton" to="ScreenSplit" method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options/MinesSetting/SpinBox" to="." method="_on_mine_count_changed"]
 [connection signal="meta_clicked" from="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits/RichTextLabel" to="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Credits/RichTextLabel" method="_on_meta_clicked"]
+[connection signal="pressed" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="toggled" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/OptionsButton" to="ScreenSplit" method="_on_options_button_toggled"]
 [connection signal="toggled" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/CreditsButton" to="ScreenSplit" method="_on_credits_button_toggled"]
+[connection signal="pressed" from="ScreenSplit/Main/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/QuitButton" to="ScreenSplit" method="_on_quit_button_pressed"]

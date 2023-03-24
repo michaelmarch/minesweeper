@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=53 format=3 uid="uid://cxkiulyl3viy1"]
+[gd_resource type="Theme" load_steps=60 format=3 uid="uid://cxkiulyl3viy1"]
 
 [ext_resource type="Texture2D" uid="uid://d1rhx5cukjyxv" path="res://assets/ui/grey_button02.png" id="1_cnx58"]
 [ext_resource type="Texture2D" uid="uid://dmguulcpav3av" path="res://assets/ui/green_button00.png" id="1_smcd6"]
@@ -12,13 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://bwftf4ygs45d7" path="res://assets/ui/blue_circle.png" id="7_j3h1u"]
 [ext_resource type="Texture2D" uid="uid://dvlvi0edg8urt" path="res://assets/ui/grey_button06.png" id="7_tpm4y"]
 [ext_resource type="Texture2D" uid="uid://crmu4wi6fcqg7" path="res://assets/ui/red_button04.png" id="8_qx7xy"]
-[ext_resource type="Texture2D" uid="uid://c3kn1tgcluwlv" path="res://assets/ui/blue_button05.png" id="9_wna7h"]
+[ext_resource type="Texture2D" uid="uid://c2jgs2ee64b3c" path="res://assets/ui/red_button05.png" id="9_pi4uj"]
 [ext_resource type="FontFile" uid="uid://ct81yhs5uubto" path="res://fonts/kenvector_future/kenvector_future_thin.ttf" id="12_lcx4x"]
 [ext_resource type="Texture2D" uid="uid://b6mb6rofid63r" path="res://assets/ui/blue_panel.png" id="13_71a6y"]
 [ext_resource type="Texture2D" uid="uid://b2iiuu7sm24a0" path="res://assets/ui/yellow_button00.png" id="13_opk6k"]
 [ext_resource type="Texture2D" uid="uid://wkpc0j5w5bvf" path="res://assets/ui/yellow_button01.png" id="14_0ttp0"]
 [ext_resource type="Texture2D" uid="uid://c3anshg331fc2" path="res://assets/ui/blue_button00.png" id="15_ws7ij"]
 [ext_resource type="Texture2D" uid="uid://b2gra8ighunkv" path="res://assets/ui/blue_button01.png" id="16_m8kdd"]
+[ext_resource type="Texture2D" uid="uid://bhwwj3eox8pyx" path="res://assets/ui/grey_button03.png" id="17_bmaic"]
+[ext_resource type="Texture2D" uid="uid://bi7blyy784pum" path="res://assets/ui/blue_button02.png" id="18_oysye"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5wpn"]
 texture = ExtResource("1_cnx58")
@@ -60,6 +62,7 @@ texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
+region_rect = Rect2(1, 0, 36, 36)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aeo2l"]
 texture = ExtResource("5_5mfdx")
@@ -67,7 +70,7 @@ texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
-region_rect = Rect2(0, 0, 38, 36)
+region_rect = Rect2(1, 0, 36, 36)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jmipo"]
 
@@ -94,7 +97,7 @@ texture_margin_bottom = 17.0
 region_rect = Rect2(0, 0, 49, 49)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wvuo8"]
-texture = ExtResource("9_wna7h")
+texture = ExtResource("9_pi4uj")
 texture_margin_left = 6.0
 texture_margin_top = 12.0
 texture_margin_right = 6.0
@@ -151,6 +154,36 @@ texture_margin_top = 4.0
 texture_margin_right = 7.0
 texture_margin_bottom = 10.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ln0wl"]
+texture = ExtResource("5_xl1co")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbu0a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcig7"]
+texture = ExtResource("17_bmaic")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_stbta"]
+texture = ExtResource("18_oysye")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkhmw"]
+texture = ExtResource("1_cnx58")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yt2xs"]
 texture = ExtResource("13_71a6y")
 texture_margin_left = 7.0
@@ -206,6 +239,12 @@ ExitButton/styles/hover = SubResource("StyleBoxTexture_08j35")
 ExitButton/styles/normal = SubResource("StyleBoxTexture_08j35")
 ExitButton/styles/pressed = SubResource("StyleBoxTexture_yqjss")
 ExitButton2/base_type = &"Button"
+ExitButton2/colors/font_color = Color(1, 1, 1, 1)
+ExitButton2/colors/font_focus_color = Color(1, 1, 1, 1)
+ExitButton2/colors/font_hover_color = Color(0.368627, 0.368627, 0.368627, 1)
+ExitButton2/colors/font_hover_pressed_color = Color(0.368627, 0.368627, 0.368627, 1)
+ExitButton2/colors/font_outline_color = Color(0.368627, 0.368627, 0.368627, 1)
+ExitButton2/colors/font_pressed_color = Color(0.368627, 0.368627, 0.368627, 1)
 ExitButton2/styles/disabled = SubResource("StyleBoxEmpty_86xhe")
 ExitButton2/styles/focus = SubResource("StyleBoxEmpty_1yb66")
 ExitButton2/styles/hover = SubResource("StyleBoxTexture_inpie")
@@ -255,6 +294,26 @@ SecondaryButton/styles/focus = SubResource("StyleBoxEmpty_ublb3")
 SecondaryButton/styles/hover = SubResource("StyleBoxTexture_e8o7e")
 SecondaryButton/styles/normal = SubResource("StyleBoxTexture_e8o7e")
 SecondaryButton/styles/pressed = SubResource("StyleBoxTexture_ac25o")
+TileNormal/base_type = &"Button"
+TileNormal/colors/font_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_disabled_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_focus_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_hover_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_outline_color = Color(0, 0, 0, 1)
+TileNormal/colors/font_pressed_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_disabled_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_focus_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_hover_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_normal_color = Color(0, 0, 0, 1)
+TileNormal/colors/icon_pressed_color = Color(0, 0, 0, 1)
+TileNormal/font_sizes/font_size = 16
+TileNormal/styles/disabled = SubResource("StyleBoxTexture_ln0wl")
+TileNormal/styles/focus = SubResource("StyleBoxEmpty_tbu0a")
+TileNormal/styles/hover = SubResource("StyleBoxTexture_mcig7")
+TileNormal/styles/normal = SubResource("StyleBoxTexture_stbta")
+TileNormal/styles/pressed = SubResource("StyleBoxTexture_wkhmw")
 Title/base_type = &"Label"
 Title/colors/font_color = Color(1, 1, 1, 1)
 TitlePanel/base_type = &"PanelContainer"

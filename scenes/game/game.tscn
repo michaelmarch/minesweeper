@@ -1,0 +1,327 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtf2hgt1xhukd"]
+
+[ext_resource type="Theme" uid="uid://cxkiulyl3viy1" path="res://main_theme.tres" id="1_jf3i1"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="2_edssg"]
+[ext_resource type="Script" path="res://scenes/game/grid_filler.gd" id="2_lwuxm"]
+[ext_resource type="PackedScene" uid="uid://bkssbrw1lgx1w" path="res://scenes/game/tile/tile.tscn" id="4_t4b1e"]
+
+[sub_resource type="GDScript" id="GDScript_dyyc1"]
+script/source = "extends Button
+
+
+func _toggled(button_pressed):
+	if button_pressed:
+		get_tree().get_root().size = Vector2i(1280, 720)
+	else:
+		get_tree().get_root().size = Vector2i(1600, 900)
+	
+	get_tree().get_root().position = (DisplayServer.screen_get_size() - get_tree().get_root().size) / 2
+"
+
+[sub_resource type="GDScript" id="GDScript_7s7f0"]
+script/source = "extends PanelContainer
+
+#func _physics_process(delta):
+#	custom_minimum_size.x = size.y
+
+
+func _ready() -> void:
+	await get_child(0).ready
+	if Settings.width == Settings.height:
+		size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		size_flags_vertical = Control.SIZE_EXPAND_FILL
+		custom_minimum_size.x = size.y
+		pass
+	elif Settings.width > Settings.height:
+		size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		size_flags_vertical = Control.SIZE_FILL
+"
+
+[node name="Game" type="PanelContainer" node_paths=PackedStringArray("_grid_filler")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jf3i1")
+script = ExtResource("2_edssg")
+_grid_filler = NodePath("VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitlePanel2"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label2" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"WhiteLabel"
+text = "1:19"
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"WhiteLabel"
+text = "Mines left: 20 / 99"
+
+[node name="Button3" type="Button" parent="VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = " Test 3"
+script = SubResource("GDScript_dyyc1")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CenterContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(915, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_type_variation = &"WindowPanel"
+script = SubResource("GDScript_7s7f0")
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(540, 540)
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 8
+script = ExtResource("2_lwuxm")
+
+[node name="Tile" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile2" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile3" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile4" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile5" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile6" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile7" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile8" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile9" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile10" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile11" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile12" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile13" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile14" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile15" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile16" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile17" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile18" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile19" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile20" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile21" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile22" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile23" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile24" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile25" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile26" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile27" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile28" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile29" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile30" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile31" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile32" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile33" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile34" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile35" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile36" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile37" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile38" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile39" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile40" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile41" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile42" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile43" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile44" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile45" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile46" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile47" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile48" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile49" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile50" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile51" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile52" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile53" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile54" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile55" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile56" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile57" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile58" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile59" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile60" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile61" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile62" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile63" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="Tile64" parent="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" instance=ExtResource("4_t4b1e")]
+layout_mode = 2
+
+[node name="GameOverDialog" type="ConfirmationDialog" parent="."]
+process_mode = 3
+initial_position = 1
+title = "Game over"
+size = Vector2i(277, 123)
+transient = false
+unresizable = true
+popup_window = true
+ok_button_text = "YES"
+dialog_text = "Mines found: 2 / 10
+
+Do you want to play again ?"
+cancel_button_text = "NO"
+
+[node name="VictoryDialog" type="ConfirmationDialog" parent="."]
+initial_position = 1
+title = "Game over"
+exclusive = false
+unresizable = true
+
+[connection signal="tile_pressed" from="VBoxContainer/MarginContainer/CenterContainer/PanelContainer/GridContainer" to="." method="_on_tile_pressed"]
+[connection signal="canceled" from="GameOverDialog" to="." method="_on_game_over_dialog_canceled"]
+[connection signal="confirmed" from="GameOverDialog" to="." method="_on_game_over_dialog_confirmed"]
