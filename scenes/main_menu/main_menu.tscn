@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8e7ut1tw7oxa"]
+[gd_scene load_steps=8 format=3 uid="uid://6yggwyv3ma57"]
 
-[ext_resource type="Theme" uid="uid://cxkiulyl3viy1" path="res://main_theme.tres" id="1_qs77i"]
-[ext_resource type="Texture2D" uid="uid://c1bwg1nlubudn" path="res://assets/ui/grey_crossWhite.png" id="2_1lobc"]
+[ext_resource type="Theme" path="res://main_theme.tres" id="1_qs77i"]
 [ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="2_hgn81"]
 [ext_resource type="Script" path="res://scenes/main_menu/split_screen.gd" id="2_rgyul"]
+[ext_resource type="Texture2D" uid="uid://03sxcmmnh0kv" path="res://assets/kenney-ui-pack/grey_crossWhite.png" id="4_ueqbn"]
 [ext_resource type="ButtonGroup" uid="uid://dq1f8fefuyhs4" path="res://scenes/main_menu/screen_control_buttons.tres" id="4_v313f"]
 [ext_resource type="Script" path="res://credits_handler.gd" id="5_pat12"]
 
@@ -50,7 +50,7 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
 theme_type_variation = &"ExitButton"
-icon = ExtResource("2_1lobc")
+icon = ExtResource("4_ueqbn")
 icon_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="ScreenSplit/CenterContainer/MarginContainer/VBoxContainer"]
