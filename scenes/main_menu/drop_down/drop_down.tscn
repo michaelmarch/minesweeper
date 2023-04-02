@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://5e2p1kd5hov1"]
+
+[ext_resource type="Script" path="res://scenes/main_menu/drop_down/drop_down.gd" id="1_lvsns"]
+[ext_resource type="Texture2D" uid="uid://w3rlmfeltxwj" path="res://assets/kenney-ui-pack/grey_arrowDownGrey.png" id="3_d21ij"]
+
+[node name="DropDown" type="OptionButton" node_paths=PackedStringArray("drop_button")]
+size_flags_horizontal = 10
+alignment = 1
+script = ExtResource("1_lvsns")
+drop_button = NodePath("HBoxContainer/DropButton")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DropButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_type_variation = &"DropButton"
+toggle_mode = true
+keep_pressed_outside = true
+text = " "
+icon = ExtResource("3_d21ij")
+icon_alignment = 1
+expand_icon = true

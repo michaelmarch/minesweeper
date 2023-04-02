@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkssbrw1lgx1w"]
 
-[ext_resource type="Script" path="res://scenes/game/tile/tile.gd" id="1_i5asy"]
+[ext_resource type="Script" path="res://scenes/game/tile/Tile.cs" id="1_yn3yn"]
 
 [node name="Tile" type="Button"]
 anchors_preset = 15
@@ -8,7 +8,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 theme_type_variation = &"TileNormal"
-script = ExtResource("1_i5asy")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_yn3yn")

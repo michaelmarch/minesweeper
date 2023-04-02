@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://drf6jiv0j0li6"]
+
+[ext_resource type="Texture2D" uid="uid://03sxcmmnh0kv" path="res://assets/kenney-ui-pack/grey_crossWhite.png" id="1_veepi"]
+
+[sub_resource type="GDScript" id="GDScript_ukid3"]
+script/source = "@tool
+extends Control
+
+@onready
+var node_holder: Control = $VBoxContainer/MarginContainer/PanelContainer/MarginContainer/Options
+
+func popup_centered(p_size: Vector2i) -> void:
+	var custom_pos := (get_tree().root.size - p_size) / 2
+	print(get_tree().root.size)
+	print(custom_pos)
+	visible = true
+	position = custom_pos
+	size = p_size
+
+func _ready() -> void:
+	for node in node_holder.get_children():
+		node_holder.remove_child(node)
+		node.queue_free()
+	
+	if Engine.is_editor_hint():
+		print(\"EDITOR PREVIEW\")
+		node_holder.modulate = Color8(0, 0, 0, 0)
+		for child in get_children():
+			if child in [get_child(0)]:
+				continue
+			
+			var dupe_child := child.duplicate(15)
+			node_holder.add_child(dupe_child)
+	else:
+		print(\"GAME VIEW\")
+		for child in get_children():
+			if child in [get_child(0)]:
+				continue
+			print(\"MOVING\")
+			remove_child(child)
+			node_holder.add_child(child)
+	popup_centered(Vector2i(200, 150))
+"
+
+[node name="Window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ukid3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_type_variation = &"ExitButton"
+icon = ExtResource("1_veepi")
+icon_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
+y_sort_enabled = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"WindowPanel"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Options" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
+modulate = Color(0, 0, 0, 0)
+layout_mode = 2
+theme_override_constants/separation = 10

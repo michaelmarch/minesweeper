@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://qn8merhtfya7" path="res://assets/kenney-platformer-redux/spritesheet_hud.png" id="1_sih0w"]
+
+[resource]
+atlas = ExtResource("1_sih0w")
+region = Rect2(156, 421, 68, 68)
